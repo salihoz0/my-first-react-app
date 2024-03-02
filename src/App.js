@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+/** @format */
+import "./App.css";
+import { useState, useEffect } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    const [count, setCount] = useState(0);
+    useEffect(() => {
+        if (count > 15) {
+            alert(`Ulaşabileceğiniz en yüksek sayı olan ${count}'e ulaştınız`);
+        } else if (count === -15) {
+            alert(`Ulaşabileceğiniz en düşük sayı olan ${count}'e ulaştınız`);
+        }
+    }, [count]);
+    return (
+        <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "7px",
+            }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <h1>Sayıcı</h1>
+            <h1>Şuanda sayı: {count} </h1>
+            <button
+                style={{ width: "100px" }}
+                onClick={() => {
+                    if (count < 15) {
+                        setCount(count + 1);
+                    }
+                }}
+            >
+                Artır
+            </button>
+            <button
+                style={{ width: "100px" }}
+                onClick={() => {
+                    if (count > -15) {
+                        setCount(count - 1);
+                    }
+                }}
+            >
+                Azalt
+            </button>
+        </div>
+    );
 }
 
 export default App;
